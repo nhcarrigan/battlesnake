@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "rm -rf ./prod",
     "build": "tsc",
-    "start": "node ./prod/index.js"
+    "start": "node -r dotenv/config ./prod/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,9 +19,12 @@
   },
   "homepage": "https://github.com/nhcarrigan/battlesnake#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "@types/body-parser": "^1.19.0",
     "@types/express": "^4.17.11",
     "@types/node": "^14.14.22",
     "@typescript-eslint/eslint-plugin": "^4.14.0",

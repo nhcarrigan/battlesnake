@@ -5,6 +5,7 @@ import { isAtDown } from "./boundaries/isAtDown";
 import { isAtLeft } from "./boundaries/isAtLeft";
 import { isAtRight } from "./boundaries/isAtRight";
 import { isAtUp } from "./boundaries/isAtUp";
+import { moveToCentre } from "./moveToCentre";
 import { obsAtDown } from "./obstacles/obsAtDown";
 import { obsAtLeft } from "./obstacles/obsAtLeft";
 import { obsAtRight } from "./obstacles/obsAtRight";
@@ -30,15 +31,14 @@ export const calculateMove = (
   };
 
   const allMoveArray = Object.entries(validMoveList) as [MoveType, boolean][];
-  const validMoveArray = allMoveArray.filter((move) => move[1]);
+  const validMoveArray = allMoveArray
+    .filter((move) => move[1])
+    .map((move) => move[0]);
 
   // fallback case for when snake is boxed in.
   if (!validMoveArray.length) {
     return "up";
   }
 
-  const moveIndex = Math.floor(Math.random() * validMoveArray.length);
-
-  const move = validMoveArray[moveIndex][0];
-  return move;
+  return moveToCentre(location, [board.width, board.height], validMoveArray);
 };

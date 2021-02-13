@@ -10,6 +10,12 @@ import { obsAtLeft } from "./obstacles/obsAtLeft";
 import { obsAtRight } from "./obstacles/obsAtRight";
 import { obsAtUp } from "./obstacles/obsAtUp";
 
+/**
+ * Calculates available moves, then selects non-losing move randomly.
+ * @param {CoordinateInt} location My snake's current head location
+ * @param {CoordinateInt[]} obstacles Array of occupied board squares
+ * @param {BoardInt} board Board data (for size)
+ */
 export const calculateMove = (
   location: CoordinateInt,
   obstacles: CoordinateInt[],
@@ -25,6 +31,12 @@ export const calculateMove = (
 
   const allMoveArray = Object.entries(validMoveList) as [MoveType, boolean][];
   const validMoveArray = allMoveArray.filter((move) => move[1]);
+
+  // fallback case for when snake is boxed in.
+  if (!validMoveArray.length) {
+    console.log("Game over!");
+    return "up";
+  }
 
   const moveIndex = Math.floor(Math.random() * validMoveArray.length);
 

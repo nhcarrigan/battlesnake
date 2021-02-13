@@ -10,6 +10,6 @@ export const obsAtUp = (
   obstacles: CoordinateInt[]
 ): boolean => {
   return obstacles.some(
-    (coord) => coord.x === location.x && coord.y === location.y - 1
+    (coord) => coord.x === location.x && coord.y === location.y + 1
   );
 };

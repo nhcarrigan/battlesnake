@@ -34,7 +34,6 @@ export const calculateMove = (
 
   // fallback case for when snake is boxed in.
   if (!validMoveArray.length) {
-    console.log("Game over!");
     return "up";
   }
 

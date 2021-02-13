@@ -14,11 +14,21 @@ import { findOccupiedSquares } from "../modules/findOccupiedSquares";
 export const handleMove = (request: Request, response: Response): void => {
   const gameData: RequestBodyInt = request.body;
 
+  if (!gameData.you) {
+    response.status(400).send({ error: "This snake not found." });
+    return;
+  }
+
+  if (!gameData.board) {
+    response.status(400).send({ error: "Game board not found." });
+    return;
+  }
+
   const myHead = gameData.you.head;
   const occupiedSquares: CoordinateInt[] = findOccupiedSquares(gameData);
   const board = gameData.board;
 
-  const intendedMove: MoveType = calculateMove(myHead, occupiedSquares, board);
+  const move: MoveType = calculateMove(myHead, occupiedSquares, board);
 
-  response.status(200).send({ intendedMove });
+  response.status(200).send({ move });
 };

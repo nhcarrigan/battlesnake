@@ -8,7 +8,7 @@
     "build": "tsc",
     "start": "node -r dotenv/config ./prod/index.js",
     "lint": "eslint src",
-    "test": "ts-mocha -u tdd src/tests/**/*.spec.ts --recursive"
+    "test": "ts-mocha -u tdd src/tests/**/*.spec.ts --recursive --exit"
   },
   "repository": {
     "type": "git",

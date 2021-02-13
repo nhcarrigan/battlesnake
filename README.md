@@ -1,14 +1,12 @@
-# Project Name
+# Battlesnake!
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Project Description
-
+An API server to interface with the Battlesnake Client.
 ## Live Version
 
-This page is not yet deployed.
-<!--This page is currently deployed. [View the live website.]()-->
+This page is currently deployed. [View the live website.](https://play.battlesnake.com/u/nhcarrigan/nhcarrigans-battlesnake/)
 
 ## Feedback and Bugs
 

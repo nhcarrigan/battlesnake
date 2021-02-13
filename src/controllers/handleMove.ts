@@ -1,12 +1,21 @@
 import { Request, Response } from "express";
+import { CoordinateInt } from "../interfaces/CoordinateInt";
+import { MoveType } from "../interfaces/MoveInt";
 import { RequestBodyInt } from "../interfaces/RequestBodyInt";
+import { calculateMove } from "../modules/calculateMove";
+import { findOccupiedSquares } from "../modules/findOccupiedSquares";
 
 export const handleMove = (request: Request, response: Response): void => {
   const gameData: RequestBodyInt = request.body;
 
-  const possibleMoves = ["up", "down", "left", "right"];
-  const move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+  const myHead = gameData.you.head;
+  const occupiedSquares: CoordinateInt[] = findOccupiedSquares(gameData);
+  const board = gameData.board;
 
-  console.info("MOVE: " + move);
-  response.status(200).send({ move });
+  const intendedMove: MoveType = calculateMove(myHead, occupiedSquares, {
+    x: board.width,
+    y: board.height,
+  });
+
+  response.status(200).send({ intendedMove });
 };

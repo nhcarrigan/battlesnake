@@ -12,10 +12,7 @@ export const handleMove = (request: Request, response: Response): void => {
   const occupiedSquares: CoordinateInt[] = findOccupiedSquares(gameData);
   const board = gameData.board;
 
-  const intendedMove: MoveType = calculateMove(myHead, occupiedSquares, {
-    x: board.width,
-    y: board.height,
-  });
+  const intendedMove: MoveType = calculateMove(myHead, occupiedSquares, board);
 
   response.status(200).send({ intendedMove });
 };

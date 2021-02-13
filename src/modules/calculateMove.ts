@@ -1,63 +1,28 @@
+import { BoardInt } from "../interfaces/BoardInt";
 import { CoordinateInt } from "../interfaces/CoordinateInt";
 import { MoveType } from "../interfaces/MoveInt";
+import { isAtDown } from "./boundaries/isAtDown";
+import { isAtLeft } from "./boundaries/isAtLeft";
+import { isAtRight } from "./boundaries/isAtRight";
+import { isAtUp } from "./boundaries/isAtUp";
+import { obsAtDown } from "./obstacles/obsAtDown";
+import { obsAtLeft } from "./obstacles/obsAtLeft";
+import { obsAtRight } from "./obstacles/obsAtRight";
+import { obsAtUp } from "./obstacles/obsAtUp";
 
 export const calculateMove = (
   location: CoordinateInt,
-  occupied: CoordinateInt[],
-  boardSize: CoordinateInt
+  obstacles: CoordinateInt[],
+  board: BoardInt
 ): MoveType => {
   const validMoveList: { [M in MoveType]: boolean } = {
-    left: true,
-    right: true,
-    up: true,
-    down: true,
+    left: !isAtLeft(location) && !obsAtLeft(location, obstacles),
+    right:
+      !isAtRight(location, board.width) && !obsAtRight(location, obstacles),
+    up: !isAtUp(location, board.height) && !obsAtUp(location, obstacles),
+    down: !isAtDown(location) && !obsAtDown(location, obstacles),
   };
 
-  // check if we are at boundary
-  if (location.x === 0) {
-    validMoveList.left = false;
-  }
-  if (location.x === boardSize.x - 1) {
-    validMoveList.right = false;
-  }
-  if (location.y === 0) {
-    validMoveList.down = false;
-  }
-  if (location.y === boardSize.y - 1) {
-    validMoveList.up = false;
-  }
-
-  // check for collision
-  if (
-    occupied.some(
-      (coord) => coord.x === location.x && coord.y === location.y + 1
-    )
-  ) {
-    validMoveList.up = false;
-  }
-  if (
-    occupied.some(
-      (coord) => coord.x === location.x && coord.y === location.y - 1
-    )
-  ) {
-    validMoveList.down = false;
-  }
-  if (
-    occupied.some(
-      (coord) => coord.y === location.y && coord.x === location.x - 1
-    )
-  ) {
-    validMoveList.left = false;
-  }
-  if (
-    occupied.some(
-      (coord) => coord.y === location.y && coord.x === location.x + 1
-    )
-  ) {
-    validMoveList.right = false;
-  }
-
-  // get new valid moves
   const allMoveArray = Object.entries(validMoveList) as [MoveType, boolean][];
   const validMoveArray = allMoveArray.filter((move) => move[1]);
 

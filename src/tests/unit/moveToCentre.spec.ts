@@ -1,6 +1,4 @@
 import { assert } from "chai";
-import { BoardInt } from "../../interfaces/BoardInt";
-import { CoordinateInt } from "../../interfaces/CoordinateInt";
 import { MoveType } from "../../interfaces/MoveInt";
 import { moveToCentre } from "../../modules/moveToCentre";
 

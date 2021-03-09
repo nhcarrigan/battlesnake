@@ -4,7 +4,14 @@ Please ensure all pull requests and contributions comply with the [Developer Cer
 
 ## Setting Up Your Code
 
-First, fork this repository to your own account. Then use `git clone <url>` to bring your forked repository down to your local machine (remember to get the URL for *your* repository, not the original). Optionally, use `git remote add upstream <url>` to add the original repository as the upstream (this is helpful for keeping your fork up-to-date).
+Installing dependencies
+ `npm ci`
+Building files 
+`npm run build`
+Verifying lint
+`npm run lint`
+Running tests
+`npm run test`
 
 ## Claiming an Issue
 

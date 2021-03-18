@@ -6,10 +6,15 @@ Please ensure all pull requests and contributions comply with the [Developer Cer
 
 First, fork this repository to your own account. Then use `git clone <url>` to bring your forked repository down to your local machine (remember to get the URL for *your* repository, not the original). Optionally, use `git remote add upstream <url>` to add the original repository as the upstream (this is helpful for keeping your fork up-to-date).
 
-- `Installing dependencies` (npm ci)
-- `Building files` (npm run build)
-- `Verifying lint` (npm run lint)
-- `Running tests` (npm run test)
+Once you have cloned it, open your terminal and point it to your project's directory. Then use the following commands:
+
+`npm ci` - this will install the necessary node packages. `npm start` - this will run the ng serve command, which will allow you to view your changes real-time in your browser. As you save your changes, you will see the preview update.
+
+After you have made your changes, run the following commands to verify that the lint, build, and tests pass.
+
+`npm run lint` - runs the linter on the codebase. `npm run build` - generates a production build for the application. npm run test - runs the Karma unit tests.
+
+All three of these steps will need to pass for any PR to be accepted.
 
 ## Claiming an Issue
 

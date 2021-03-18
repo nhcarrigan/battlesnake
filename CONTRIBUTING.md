@@ -12,7 +12,7 @@ Once you have cloned it, open your terminal and point it to your project's direc
 
 After you have made your changes, run the following commands to verify that the lint, build, and tests pass.
 
-`npm run lint` - runs the linter on the codebase. `npm run build` - generates a production build for the application. npm run test - runs the Karma unit tests.
+`npm run lint` - runs the linter on the codebase. `npm run build` - generates a production build for the application. `npm run test` - runs the unit tests.
 
 All three of these steps will need to pass for any PR to be accepted.
 

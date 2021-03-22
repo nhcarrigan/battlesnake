@@ -3,7 +3,7 @@
 An API server to interface with the Battlesnake Client.
 ## Live Version
 
-This page is currently deployed. [View the live website.](https://play.battlesnake.com/u/nhcarrigan/nhcarrigans-battlesnake/)
+This page is currently deployed. [View the live website.](https://play.battlesnake.com/u/nhcarrigan/becca-lyria/)
 
 ## Feedback and Bugs
 

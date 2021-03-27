@@ -1,6 +1,13 @@
 # Battlesnake!
 
 An API server to interface with the Battlesnake Client.
+
+![](https://img.shields.io/codeclimate/maintainability/nhcarrigan/battlesnake)
+![](https://img.shields.io/codeclimate/issues/nhcarrigan/battlesnake)
+![](https://img.shields.io/codeclimate/tech-debt/nhcarrigan/battlesnake)
+![](https://img.shields.io/lgtm/alerts/github/nhcarrigan/battlesnake)
+![](https://img.shields.io/lgtm/grade/javascript/github/nhcarrigan/battlesnake)
+
 ## Live Version
 
 This page is currently deployed. [View the live website.](https://play.battlesnake.com/u/nhcarrigan/becca-lyria/)

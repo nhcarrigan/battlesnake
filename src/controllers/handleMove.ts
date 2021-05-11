@@ -4,6 +4,7 @@ import { MoveType } from "../interfaces/MoveInt";
 import { RequestBodyInt } from "../interfaces/RequestBodyInt";
 import { calculateMove } from "../modules/calculateMove";
 import { findOccupiedSquares } from "../modules/findOccupiedSquares";
+import { errorHandler } from "../utils/errorHandler";
 
 /**
  * Receives a GameInt in the request packet, sends back a valid
@@ -12,23 +13,27 @@ import { findOccupiedSquares } from "../modules/findOccupiedSquares";
  * @param response Response packet
  */
 export const handleMove = (request: Request, response: Response): void => {
-  const gameData: RequestBodyInt = request.body;
+  try {
+    const gameData: RequestBodyInt = request.body;
 
-  if (!gameData.you) {
-    response.status(400).send({ error: "This snake not found." });
-    return;
+    if (!gameData.you) {
+      response.status(400).send({ error: "This snake not found." });
+      return;
+    }
+
+    if (!gameData.board) {
+      response.status(400).send({ error: "Game board not found." });
+      return;
+    }
+
+    const myHead = gameData.you.head;
+    const occupiedSquares: CoordinateInt[] = findOccupiedSquares(gameData);
+    const board = gameData.board;
+
+    const move: MoveType = calculateMove(myHead, occupiedSquares, board);
+
+    response.status(200).send({ move });
+  } catch (err) {
+    errorHandler("move controller", err);
   }
-
-  if (!gameData.board) {
-    response.status(400).send({ error: "Game board not found." });
-    return;
-  }
-
-  const myHead = gameData.you.head;
-  const occupiedSquares: CoordinateInt[] = findOccupiedSquares(gameData);
-  const board = gameData.board;
-
-  const move: MoveType = calculateMove(myHead, occupiedSquares, board);
-
-  response.status(200).send({ move });
 };

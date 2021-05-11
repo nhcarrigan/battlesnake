@@ -1,6 +1,6 @@
 {
   "name": "battlesnake",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Playing with the Battlesnake",
   "main": "/prod/index.js",
   "scripts": {
@@ -25,9 +25,12 @@
     "npm": "^7.6.0"
   },
   "dependencies": {
+    "@sentry/integrations": "^6.3.6",
+    "@sentry/node": "^6.3.6",
     "body-parser": "^1.19.0",
     "dotenv": "^9.0.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/body-parser": "1.19.0",

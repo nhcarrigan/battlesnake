@@ -1,6 +1,7 @@
 import { BoardInt } from "../interfaces/BoardInt";
 import { CoordinateInt } from "../interfaces/CoordinateInt";
 import { MoveType } from "../interfaces/MoveInt";
+import { errorHandler } from "../utils/errorHandler";
 import { isAtDown } from "./boundaries/isAtDown";
 import { isAtLeft } from "./boundaries/isAtLeft";
 import { isAtRight } from "./boundaries/isAtRight";
@@ -22,23 +23,28 @@ export const calculateMove = (
   obstacles: CoordinateInt[],
   board: BoardInt
 ): MoveType => {
-  const validMoveList: { [M in MoveType]: boolean } = {
-    left: !isAtLeft(location) && !obsAtLeft(location, obstacles),
-    right:
-      !isAtRight(location, board.width) && !obsAtRight(location, obstacles),
-    up: !isAtUp(location, board.height) && !obsAtUp(location, obstacles),
-    down: !isAtDown(location) && !obsAtDown(location, obstacles),
-  };
+  try {
+    const validMoveList: { [M in MoveType]: boolean } = {
+      left: !isAtLeft(location) && !obsAtLeft(location, obstacles),
+      right:
+        !isAtRight(location, board.width) && !obsAtRight(location, obstacles),
+      up: !isAtUp(location, board.height) && !obsAtUp(location, obstacles),
+      down: !isAtDown(location) && !obsAtDown(location, obstacles),
+    };
 
-  const allMoveArray = Object.entries(validMoveList) as [MoveType, boolean][];
-  const validMoveArray = allMoveArray
-    .filter((move) => move[1])
-    .map((move) => move[0]);
+    const allMoveArray = Object.entries(validMoveList) as [MoveType, boolean][];
+    const validMoveArray = allMoveArray
+      .filter((move) => move[1])
+      .map((move) => move[0]);
 
-  // fallback case for when snake is boxed in.
-  if (!validMoveArray.length) {
+    // fallback case for when snake is boxed in.
+    if (!validMoveArray.length) {
+      return "up";
+    }
+
+    return moveToCentre(location, [board.width, board.height], validMoveArray);
+  } catch (err) {
+    errorHandler("calculate move", err);
     return "up";
   }
-
-  return moveToCentre(location, [board.width, board.height], validMoveArray);
 };

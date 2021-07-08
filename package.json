@@ -1,6 +1,6 @@
 {
   "name": "battlesnake",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Playing with the Battlesnake",
   "main": "/prod/index.js",
   "scripts": {
